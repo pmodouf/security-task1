@@ -33,8 +33,10 @@ public class RegistrationController {
         UserModel newUser = new UserModel(registrationForm.getUsername(), registrationForm.getPassword());
         userRepository.save(newUser);
 
-        return "successPage";  // redirect to a success page or any other page
+        return "newUsers";
     }
+
+
 }
 
 
