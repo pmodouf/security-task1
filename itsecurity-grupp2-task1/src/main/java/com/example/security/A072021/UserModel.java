@@ -1,4 +1,4 @@
-package A072021;
+package com.example.security.A072021;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

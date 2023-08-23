@@ -1,4 +1,4 @@
-package A072021;
+package com.example.security.A072021;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package A072021;
+package com.example.security.A072021;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers("/", "/public").permitAll()
+                        .requestMatchers("/", "/public", "/register").permitAll()
                         .requestMatchers("/api/**").hasRole("USER")
                         .requestMatchers("/admin").hasRole("ADMIN"))
                 .formLogin(Customizer.withDefaults())
