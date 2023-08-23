@@ -1,1 +1,0 @@
-# itsecurity-grupp2-task1
