@@ -7,24 +7,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/register")
-public class RegistrationController {
+@RequestMapping("/user")
+public class UserController {
 
+    private final UserRepository userRepository;
 
-/*
     @Autowired
-    public RegistrationController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("registrationForm", new RegistrationForm());
         return "register";  // return to the registration form
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String processRegistration(@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult result) {
         if (result.hasErrors()) {
             return "register";  // return to the form if there are errors
@@ -36,7 +38,8 @@ public class RegistrationController {
         return "newUsers";
     }
 
-*/
+    @GetMapping("/all")
+    public String getAllUsers(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "showAllUsers";}
 }
-
-

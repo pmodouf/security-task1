@@ -20,7 +20,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-                        .requestMatchers("/", "/public", "/register").permitAll()
+                        .requestMatchers("/", "/public", "/register", "/user/**").permitAll()
                         .requestMatchers("/api/**").hasRole("USER")
                         .requestMatchers("/admin").hasRole("ADMIN"))
                 .formLogin(Customizer.withDefaults())
@@ -31,11 +31,11 @@ public class WebSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withUsername("user")
-                .password("1234")
+                .password("{noop}1234")
                 .roles("USER")
                 .build();
         UserDetails admin = User.withUsername("admin")
-                .password("5678").roles("USER", "ADMIN")
+                .password("{noop}5678").roles("USER", "ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
     }
