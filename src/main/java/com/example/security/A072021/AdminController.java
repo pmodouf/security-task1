@@ -10,7 +10,7 @@ public class AdminController {
     private UserRepository userRepository;
     @GetMapping()
     public String getSessions() {
-        return "Doing admin tasks\n" + userRepository.findAll();
+        return "Doing admin tasks\n";
     }
 
 }

@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -28,20 +30,34 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService2() {
         UserDetails user = User.withUsername("user")
-                .password("{noop}1234")
+                .password("{bcrypt}$2a$12$ZwMay4o1NfLYQmzV51/bwuXYxHsd5pXbzl0YTzQDl4waaEcZVQzeu")
                 .roles("USER")
                 .build();
         UserDetails admin = User.withUsername("admin")
-                .password("{noop}5678").roles("USER", "ADMIN")
+                .password("{bcrypt}$2a$12$ZPYrl0QvByrSOLmcoYLIyeV8OSw3hBB2BuerBziDwj.U/8KBFXAaC").roles("USER", "ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
     }
+
+
     //.password("{bcrypt}$2a$10$CmynNnwTzLU4QQ8XslbY8O0TlT8nIrrss3yGR0JUeTPXC7UPLNXZe")
 
     //.password("{bcrypt}$2a$10$CmynNnwTzLU4QQ8XslbY8O0TlT8nIrrss3yGR0JUeTPXC7UPLNXZe").roles("USER", "ADMIN")
 
 
-}
+
+    }
+
+
+
+
+
+
+
+
+
+

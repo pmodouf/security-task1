@@ -2,6 +2,13 @@ package com.example.security.A072021;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,11 +35,16 @@ public class UserController {
 
     @PostMapping("/add")
     public String processRegistration(@Valid @ModelAttribute RegistrationForm registrationForm, BindingResult result) {
+
+
         if (result.hasErrors()) {
             return "register";  // return to the form if there are errors
         }
 
-        UserModel newUser = new UserModel(registrationForm.getUsername(), registrationForm.getPassword());
+        BCryptPasswordEncoder encrypt = new BCryptPasswordEncoder();
+        UserModel newUser = new UserModel(registrationForm.getUsername(),encrypt.encode(registrationForm.getPassword()));
+
+
         userRepository.save(newUser);
 
         return "newUsers";

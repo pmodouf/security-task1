@@ -10,9 +10,22 @@ public class RegistrationForm {
     @NotBlank(message = "Användarnamn får inte vara tomt")
     private String username;
 
+    /*
+    //A072021
     @NotBlank(message = "Lösenord får inte vara tomt")
     @Size(min = 4, max = 4, message = "Lösenord måste vara exakt 4 siffror")
     @Pattern(regexp = "^[0-9]{4}$", message = "Lösenord måste bestå av endast 4 siffror")
+
+    //nytt krav på lösenord
+    */
+    @NotBlank(message = "Lösenord får inte vara tomt")
+    @Size(min = 8, message = "Lösenord måste vara minst 8 tecken långt")
+    @Pattern.List({
+            @Pattern(regexp = ".*[a-z].*", message = "Lösenord måste innehålla minst en liten bokstav"),
+            @Pattern(regexp = ".*[A-Z].*", message = "Lösenord måste innehålla minst en stor bokstav"),
+            @Pattern(regexp = ".*\\d.*", message = "Lösenord måste innehålla minst en siffra"),
+            @Pattern(regexp = ".*[!@#$%^&+=?-].*", message = "Lösenord måste innehålla minst ett specialtecken")
+    })
     private String password;
 
     public String getUsername() {
@@ -31,17 +44,6 @@ public class RegistrationForm {
         this.password = password;
     }
 
-    //nytt krav på lösenord
-    /*
-    @NotBlank(message = "Lösenord får inte vara tomt")
-    @Size(min = 8, message = "Lösenord måste vara minst 8 tecken långt")
-    @Pattern.List({
-            @Pattern(regexp = ".*[a-z].*", message = "Lösenord måste innehålla minst en liten bokstav"),
-            @Pattern(regexp = ".*[A-Z].*", message = "Lösenord måste innehålla minst en stor bokstav"),
-            @Pattern(regexp = ".*\\d.*", message = "Lösenord måste innehålla minst en siffra"),
-            @Pattern(regexp = ".*[!@#$%^&*+=?-].*", message = "Lösenord måste innehålla minst ett specialtecken")
-
-     */
 
 
 }
