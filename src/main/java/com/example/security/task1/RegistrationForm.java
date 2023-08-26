@@ -1,4 +1,4 @@
-package com.example.security.A072021;
+package com.example.security.task1;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

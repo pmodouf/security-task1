@@ -1,7 +1,7 @@
 package com.example.security;
 
 
-import com.example.security.A072021.UserRepository;
+import com.example.security.task1.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

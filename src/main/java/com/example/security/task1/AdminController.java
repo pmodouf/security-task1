@@ -1,4 +1,4 @@
-package com.example.security.A072021;
+package com.example.security.task1;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
